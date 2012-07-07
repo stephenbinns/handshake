@@ -1,0 +1,34 @@
+{
+  "name": "handshake",
+  "description": "Code contracts for javascript",
+  "version": "0.1.0",
+  "homepage": "https://github.com/stephenbinns/handshake",
+  "author": {
+    "name": "Stephen Binns",
+    "email": "stephen.binns@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stephenbinns/handshake.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stephenbinns/handshake/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/stephenbinns/handshake/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/handshake",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.11"
+  },
+  "keywords": []
+}
