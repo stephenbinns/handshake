@@ -1,55 +1,93 @@
-/*! handshake - v0.1.0 - 2012-07-08
+/*! handshake - v0.1.0 - 2012-07-10
 * https://github.com/stephenbinns/handshake
 * Copyright (c) 2012 Stephen Binns; Licensed MIT */
 
-(function(exports) {
+(function(exports, undefined) {
 
-
-	var isNull = function(value) {
+	// ASSERTIONS
+	function isNull(value) {
 		return value === null;
-	};
+	}
 
-	var isUndefined = function(value) {
-		return typeof (value) === "undefined";
-	};
+	function isUndefined(value) {
+		return ofType(typeof(undefined), value);
+	}
 
-	var isNotNull = function(value){
+	function isNotNull(value){
 		return !isNull(value);
-	};
+	}
 
-	var isNotUndefined = function(value){
+	function isNotUndefined(value){
 		return !isUndefined(value);
-	};
+	}
 
 	function isNotNullOrUndefined(value){
 		return isNotNull(value) && isNotUndefined(value);
 	}
+	
+	function isEmpty(value){
+		return value.length === 0;
+	}
 
+	function ofType(typeName, value){
+		return typeof (value) === typeName;
+	}
+
+
+	// EXCEPTION HELPER
 	function expect(operation, message){
 		if (operation === false){
 			throw new Error(message);
 		}
 	}
-
 	
-	exports.preconditions = function(){
+	exports.preconditions = function(value){
+		var paramName = value;
 
 		var api = {
-			isNotNullOrUndefined : function(value, message){
+			isNotNullOrUndefined : function(message){
+				message = message || 'Argument: ' + paramName + ' may not be null or undefined';
 				expect(isNotNullOrUndefined(value), message);
-			}
-		};
-
-		return api;
-	};
-
-	exports.postconditions = function(){
-
-		var api = {
-			isNotNullOrUndefined : function(func, message){
-				var outcome = func();
-				expect(isNotNullOrUndefined(outcome), message);
-				return outcome;
+				return api;
+			},
+			isNotNull : function(message){
+				message = message || 'Argument: ' + paramName + ' may not be null';
+				expect(isNotNull(value), message);
+				return api;
+			},
+			isNotUndefined : function(message){
+				message = message || 'Argument: ' + paramName + ' may not be undefined';
+				expect(isNotUndefined(value), message);
+				return api;
+			},
+			isNotEmpty : function(message) {
+				message = message || 'Argument: ' + paramName + ' may not be empty';
+				expect(value.length > 0, message);
+				return api;
+			},
+			isString : function(message) {
+				message = message || 'Argument: ' + paramName + ' must be a string';
+				var string = 'string';
+				expect(ofType(typeof(string), value));
+				return api;
+			},
+			isInt : function(message) {
+				message = message || 'Argument: ' + paramName + ' must be an int';
+				var interger = 1;
+				expect(ofType(typeof(interger),value));
+				return api;
+			},
+			isBoolean : function(message) {
+				message = message || 'Argument: ' + paramName + ' must be a bool';
+				var bool = true;
+				expect(ofType(typeof(bool), value));
+				return api;
+			},
+			isArray : function(message) {
+				message = message || 'Argument: ' + paramName + ' must be an array';
+				var array = [];
+				expect(ofType(typeof(array), value) && isNotNull(value)) ;
+				return api;
 			}
 		};
 
