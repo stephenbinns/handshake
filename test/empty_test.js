@@ -43,7 +43,7 @@ exports['isNotEmpty'] = {
     test.throws(function() {handshake.preconditions(null).isNotEmpty();});
     test.done();
   },
-  'blank string' : function(test){   
+  'blank string' : function(test){
     test.expect(1);
     test.throws(function() { handshake.preconditions('').isNotEmpty();});
     test.done();

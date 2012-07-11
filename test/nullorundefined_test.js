@@ -38,7 +38,7 @@ exports['isNotNullOrUndefined'] = {
     test.throws(function() {handshake.preconditions(null).isNotNullOrUndefined();});
     test.done();
   },
-  'blank string' : function(test){   
+  'blank string' : function(test){
     test.expect(1);
     test.doesNotThrow(function() { handshake.preconditions('').isNotNullOrUndefined();});
     test.done();
