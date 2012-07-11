@@ -1,6 +1,6 @@
 # handshake
 
-Code contracts for javascript
+Code contracts for javascript - implemented through a series of precondition validators.
 
 ## Getting Started
 ### On the server
@@ -8,7 +8,8 @@ Install the module with: `npm install handshake`
 
 ```javascript
 var handshake = require('handshake');
-handshake.awesome(); // "awesome"
+handshake.preconditions(true, 'myVar').isTrue(); // "does not throw"
+handshake.preconditions(false, 'myVar').isTrue(); // "throws"
 ```
 
 ### In the browser
@@ -22,7 +23,8 @@ In your web page:
 ```html
 <script src="dist/handshake.min.js"></script>
 <script>
-awesome(); // "awesome"
+preconditions(true, 'myVar').isTrue(); // "does not throw"
+preconditions(false, 'myVar').isTrue(); // "throws"
 </script>
 ```
 
@@ -34,15 +36,56 @@ this.exports = Bocoup.utils;
 </script>
 <script src="dist/handshake.min.js"></script>
 <script>
-Bocoup.utils.awesome(); // "awesome"
+Bocoup.utils.preconditions(true, 'myVar').isTrue(); // "does not throw"
+Bocoup.utils.preconditions(false, 'myVar').isTrue(); // "throws"
 </script>
 ```
 
 ## Documentation
-_(Coming soon)_
 
-## Examples
-_(Coming soon)_
+Preconditions are a method of ensuring that you can trust your inputs, they act as 
+a barrier between untrusted calls to your methods and the script internals.
+
+Setting up a precondition is simple
+
+```javascript
+var foo = `foo`;
+
+function myMethod(value) {
+    handshake.precondition(value, `values name`).isNotNullOrUndefined();
+    
+    // we can now trust value will never be null or undefined.
+    return value;
+}
+
+myMethod(foo);
+myMethod(null); // will throw.
+myMethod(); // will throw.
+
+```
+
+It is suggested that you handle these exceptions in a sensible way, for example
+on the server logging them or on the browser using an alert (in development) or
+alternate means in a production environment.
+
+The following conditions can be applied as a precondition of an argument.
+
+`isNotNullOrUndefined()` - will throw if the value is `null` or `undefined`.
+`isNotNull()` - will throw if the value is `null`.
+`isNotUndefined()` - will throw is the value is `undefined`.
+`isNotEmpty()` - will throw if the value does not have a `length` attribute or if that attribute returns a length of less than 1.
+`isString()` - will throw if the value is not of type `string`.
+`isInt()` - will throw if the value is not of type `int`.
+`isBoolean()` - will throw if the value is not of type `bool`.
+`isArray()` - will throw if the value is not an `array` type.
+`isTrue()` - will throw if the value is not `true`, this will not allow truthy values (since these are a path to madness).
+`isFalse()` - will throw if the value is not `false`.
+`
+All methods can be chained like so
+
+`precondition('foo').isNotNullOrUndefined().isString().isNotEmpty()`
+
+Preconditions will fail fast so it best practice to use the most general condition to least.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
@@ -50,7 +93,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _Also, please don't edit files in the "dist" subdirectory as they are generated via grunt. You'll find source code in the "lib" subdirectory!_
 
 ## Release History
-_(Nothing yet)_
+_(Nothing yet - pre beta - here be dragons.)_
 
 ## License
 Copyright (c) 2012 Stephen Binns  
