@@ -64,6 +64,12 @@ myMethod(); // will throw.
 
 ```
 
+Preconditions required you to at least provide a value to validate but also will take a name for the attribute
+
+`precondition('foo','myFoo') // value is 'foo' argument name is 'myFoo'`
+
+The argument name is used in the default error messages.
+
 It is suggested that you handle these exceptions in a sensible way, for example
 on the server logging them or on the browser using an alert (in development) or
 alternate means in a production environment.
@@ -80,12 +86,17 @@ The following conditions can be applied as a precondition of an argument.
 `isArray()` - will throw if the value is not an `array` type.
 `isTrue()` - will throw if the value is not `true`, this will not allow truthy values (since these are a path to madness).
 `isFalse()` - will throw if the value is not `false`.
-`
-All methods can be chained like so
+
+All methods can be chained like so:
 
 `precondition('foo').isNotNullOrUndefined().isString().isNotEmpty()`
 
 Preconditions will fail fast so it best practice to use the most general condition to least.
+
+There are sensible defaults for error messages but should you wish to change them the conditions will accept a string
+with a new message.
+
+`precondition('').isNotEmpty('Argument: foo should have been filled in`);`
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
