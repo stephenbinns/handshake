@@ -76,17 +76,17 @@ alternate means in a production environment.
 
 The following conditions can be applied as a precondition of an argument.
 
-*`isNotNullOrUndefined()` - will throw if the value is `null` or `undefined`.
-*`isNotNull()` - will throw if the value is `null`.
-*`isNotUndefined()` - will throw is the value is `undefined`.
-*`isNotEmpty()` - will throw if the value does not have a `length` attribute or if that attribute returns a length of less than 1.
-*`isString()` - will throw if the value is not of type `string`.
-*`isInt()` - will throw if the value is not of type `int`.
-*`isBoolean()` - will throw if the value is not of type `bool`.
-*`isArray()` - will throw if the value is not an `array` type.
-*`isTrue()` - will throw if the value is not `true`, this will not allow truthy values (since these are a path to madness).
-*`isFalse()` - will throw if the value is not `false`.
-
+* `isNotNullOrUndefined()` - will throw if the value is `null` or `undefined`.
+* `isNotNull()` - will throw if the value is `null`.
+* `isNotUndefined()` - will throw is the value is `undefined`.
+* `isNotEmpty()` - will throw if the value does not have a `length` attribute or if that attribute returns a length of less than 1.
+* `isString()` - will throw if the value is not of type `string`.
+* `isInt()` - will throw if the value is not of type `int`.
+* `isBoolean()` - will throw if the value is not of type `bool`.
+* `isArray()` - will throw if the value is not an `array` type.
+* `isTrue()` - will throw if the value is not `true`, this will not allow truthy values (since these are a path to madness).
+* `isFalse()` - will throw if the value is not `false`.
+ 
 All methods can be chained like so:
 
 `precondition('foo').isNotNullOrUndefined().isString().isNotEmpty()`
