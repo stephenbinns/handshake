@@ -1,4 +1,4 @@
-/*! handshake - v0.1.0 - 2012-07-11
+/*! handshake - v0.1.0 - 2012-07-12
 * https://github.com/stephenbinns/handshake
 * Copyright (c) 2012 Stephen Binns; Licensed MIT */
 
@@ -100,6 +100,17 @@
         expect(value === false);
         return api;
       }
+    };
+
+    return api;
+  };
+
+  exports.postconditions = function(delegate){
+    var value = delegate();
+    var api = exports.preconditions(value);
+    
+    api.invoke = function(){
+      return value;
     };
 
     return api;
