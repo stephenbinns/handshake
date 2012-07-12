@@ -1,4 +1,4 @@
-# handshake
+# Handshake
 
 Code contracts for javascript - implemented through a series of precondition validators.
 
