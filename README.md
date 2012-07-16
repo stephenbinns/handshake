@@ -49,10 +49,10 @@ a barrier between untrusted calls to your methods and the script internals.
 Setting up a precondition is simple
 
 ```javascript
-var foo = `foo`;
+var foo = 'foo';
 
 function myMethod(value) {
-    handshake.precondition(value, `values name`).isNotNullOrUndefined();
+    handshake.precondition(value, 'values name').isNotNullOrUndefined();
     
     // we can now trust value will never be null or undefined.
     return value;
