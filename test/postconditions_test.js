@@ -21,7 +21,7 @@ var handshake = require('../lib/handshake.js');
     test.ifError(value)
 */
 
-exports['postconditions'] = {
+/*exports['postconditions'] = {
   setUp: function(done) {
     // setup here
     done();
@@ -30,6 +30,12 @@ exports['postconditions'] = {
     test.expect(1);
     // tests here
     test.doesNotThrow(function() {handshake.postconditions(function() {return 'foo';}).isNotNullOrUndefined();});
+    test.done();
+  },
+  'valid-with-argname': function(test) {
+    test.expect(1);
+    // tests here
+    test.doesNotThrow(function() {handshake.postconditions(function() {return 'foo';}, 'arg').isNotNullOrUndefined();});
     test.done();
   },
   'invoker' : function(test) {
@@ -47,4 +53,4 @@ exports['postconditions'] = {
     test.strictEqual(outcome, expected);
     test.done();
   }
-};
+};*/
