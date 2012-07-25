@@ -21,7 +21,7 @@ var handshake = require('../lib/handshake.js');
     test.ifError(value)
 */
 
-/*exports['postconditions'] = {
+exports['postconditions'] = {
   setUp: function(done) {
     // setup here
     done();
@@ -53,4 +53,4 @@ var handshake = require('../lib/handshake.js');
     test.strictEqual(outcome, expected);
     test.done();
   }
-};*/
+};
