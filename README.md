@@ -2,6 +2,8 @@
 
 Code contracts for javascript - implemented through a series of precondition validators.
 
+[![Build Status](https://secure.travis-ci.org/stephenbinns/handshake.png?branch=master)](http://travis-ci.org/stephenbinns/handshake)
+
 ## Getting Started
 ### On the server
 Install the module with: `npm install handshake`
